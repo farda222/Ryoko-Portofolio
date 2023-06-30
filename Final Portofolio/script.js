@@ -1,21 +1,17 @@
-// pick content element
-const content = document.querySelector(".content");
-
-// content width
-const contentWidth = content.offsetWidth;
-
-// duration of the content
-const animationDuration = contentWidth / 99999999;
-
-// change the duration of content
-content.style.animationDuration = `${animationDuration}s`;
-
-const bodyEl = document.body;
-const barEl = document.querrySelector('.bar');
-const updateBar = () => {
-  let scrollPos =
-    (windos.scrollY / (bodyEl.scrollHeight - winddow.innerHeight)) * 100;
-  barEl.style.width = '${scrollPos}%';
-  requestAnimationFrame(updateBar);
-};
-updateBar();
+window.addEventListener('DOMContentLoaded', function() {
+    const scrollContainer = document.querySelector('.horizontal-scroll');
+    const scrollContent = document.querySelector('.content');
+  
+    const contentWidth = scrollContent.offsetWidth;
+    const containerWidth = scrollContainer.offsetWidth;
+  
+    function scroll() {
+      if (scrollContainer.scrollLeft >= contentWidth - containerWidth) {
+        scrollContainer.scrollLeft = 0;
+      } else {
+        scrollContainer.scrollLeft++;
+      }
+    } 
+  
+    setInterval(scroll, 10);
+  });
